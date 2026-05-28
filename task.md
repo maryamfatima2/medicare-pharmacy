@@ -1,0 +1,12 @@
+- [ ] Add premium font imports (Outfit, Roboto) to index.html or main CSS
+- [ ] Create new CSS variables for teal gradient palette and apply to body
+- [ ] Replace existing NavBar with new header component (logo, centered links, sticky)
+- [ ] Add Hero component with full‑width background image and overlay CTA
+- [ ] Redesign CategoryCards to use rounded tiles, icons, and 5‑column grid
+- [ ] Update OFFERS/Featured sections to three‑column gradient cards
+- [ ] Create dark footer with quick links and social icons
+- [ ] Ensure components use responsive utility classes (or Tailwind if approved)
+- [ ] Update Home.jsx to assemble new layout components
+- [ ] Verify all existing routes still work; run dev server for visual check
+- [ ] Add SEO meta description for new homepage
+- [ ] Commit changes and run lint/tests
