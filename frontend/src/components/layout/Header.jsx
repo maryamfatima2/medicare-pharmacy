@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Heart, ShoppingCart } from 'lucide-react';
 import Logo from '../brand/Logo';
 import API from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
@@ -70,11 +70,11 @@ const Header = () => {
           <Link to="/contact" className="text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-300 font-medium transition-colors">Contact</Link>
         </nav>
         <div className="flex items-center space-x-4">
-          <Link to="/wishlist" className="relative text-slate-600 dark:text-slate-300 hover:text-rose-500 dark:hover:text-rose-400 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+          <Link to="/wishlist" className="relative text-slate-600 dark:text-slate-300 hover:text-rose-500 dark:hover:text-rose-400 transition-colors" aria-label="Favorites">
+            <Heart className="w-5 h-5" />
           </Link>
-          <Link to="/cart" className="relative text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-300 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4" /></svg>
+          <Link to="/cart" className="relative text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-300 transition-colors" aria-label="Cart">
+            <ShoppingCart className="w-5 h-5" />
           </Link>
           {user ? (
             <div className="relative group">

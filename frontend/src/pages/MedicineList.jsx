@@ -35,9 +35,11 @@ const MedicineList = () => {
     const fetchMedicines = async () => {
       setLoading(true);
       try {
-        const { data } = await API.get('/medicines', {
-          params: { page, category, search, sort, limit: 12 }
-        });
+        const params = { page, limit: 12 };
+        if (category) params.category = category;
+        if (search) params.search = search;
+        if (sort) params.sort = sort;
+        const { data } = await API.get('/medicines', { params });
         setMedicines(data.medicines);
         setPages(data.pages);
         setTotal(data.total);

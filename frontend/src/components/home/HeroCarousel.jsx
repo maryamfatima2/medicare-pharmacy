@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import pharmacyHeroHand from '../../assets/pharmacy_hero_hand.png';
 
 
@@ -29,12 +30,12 @@ const HeroCarousel = () => {
       ))}
         {/* Overlay content: two CTA buttons at the bottom */}
         <div className="absolute bottom-8 left-0 right-0 z-10 flex flex-row items-center justify-center gap-4 px-4">
-          <a href="/contact" className="px-8 py-3 bg-white/90 backdrop-blur text-primary-600 border-2 border-primary-500 rounded-lg hover:bg-white transition-colors font-semibold shadow-lg">
+          <Link to="/contact" className="px-8 py-3 bg-white/90 backdrop-blur text-primary-600 border-2 border-primary-500 rounded-lg hover:bg-white transition-colors font-semibold shadow-lg">
             Upload Prescription
-          </a>
-          <a href="/medicines" className="px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-500 transition-colors font-semibold shadow-lg">
+          </Link>
+          <Link to="/medicines" className="px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-500 transition-colors font-semibold shadow-lg">
             Explore Medicines
-          </a>
+          </Link>
         </div>
 
     </section>
