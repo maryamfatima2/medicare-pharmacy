@@ -47,6 +47,24 @@ const MedicineList = () => {
         setMedicines(medicinesResponse);
         setPages(Number.isInteger(data.pages) ? data.pages : Math.max(1, Math.ceil(medicinesResponse.length / limit)));
         setTotal(Number.isInteger(data.total) ? data.total : medicinesResponse.length);
+
+        // Fallback: if no medicines were returned and there are no active filters,
+        // attempt to fetch a larger unfiltered list to ensure the page shows products.
+        if (medicinesResponse.length === 0 && !category && !search) {
+          try {
+            const fallback = await API.get('/medicines', { params: { page: 1, limit: 100 } });
+            const fallbackArr = Array.isArray(fallback.data)
+              ? fallback.data
+              : fallback.data.medicines || fallback.data.products || [];
+            if (fallbackArr.length > 0) {
+              setMedicines(fallbackArr);
+              setPages(Number.isInteger(fallback.data.pages) ? fallback.data.pages : Math.max(1, Math.ceil(fallbackArr.length / limit)));
+              setTotal(Number.isInteger(fallback.data.total) ? fallback.data.total : fallbackArr.length);
+            }
+          } catch (e) {
+            console.error('Fallback fetch error', e);
+          }
+        }
       } catch (err) {
         console.error(err);
       } finally {
