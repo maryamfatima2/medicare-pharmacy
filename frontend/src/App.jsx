@@ -15,6 +15,7 @@ import OrderDetails from './pages/OrderDetails';
 import OrderSuccess from './pages/OrderSuccess';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Categories from './pages/Categories';
 import ForgotPassword from './pages/ForgotPassword';
 import Wishlist from './pages/Wishlist';
 import DynamicCRUD from './pages/DynamicCRUD';
@@ -47,6 +48,7 @@ function App() {
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/medicines" element={<MedicineList />} />
+          <Route path="/categories" element={<Categories />} />
           <Route path="/medicine/:id" element={<MedicineDetails />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/about" element={<About />} />

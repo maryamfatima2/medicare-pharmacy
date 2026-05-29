@@ -20,6 +20,7 @@ const MedicineList = () => {
   const category = searchParams.get('category')?.trim() || '';
   const search = searchParams.get('search')?.trim() || '';
   const sort = searchParams.get('sort') || 'newest';
+  const limit = 12;
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -35,7 +36,7 @@ const MedicineList = () => {
     const fetchMedicines = async () => {
       setLoading(true);
       try {
-        const params = { page, limit: 12 };
+        const params = { page, limit };
         if (category) params.category = category;
         if (search) params.search = search;
         if (sort) params.sort = sort;
@@ -87,14 +88,16 @@ const MedicineList = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 py-12 text-white">
       {/* Header & Search */}
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-6">
         <div>
           <h1 className="text-3xl font-extrabold text-white">
-            {search ? `Results for "${search}"` : 'Pharmacy Store'}
+            {search ? `Results for "${search}"` : category ? `Category: ${categories.find((cat) => cat._id === category)?.name || 'Selected Category'}` : 'Pharmacy Store'}
           </h1>
-          <p className="text-gray-500 mt-1">Showing {medicines.length} of {total} products</p>
+          <p className="text-gray-500 mt-1">
+            {category && !search ? `Browse ${categories.find((cat) => cat._id === category)?.name || 'this category'} medicines.` : `Showing ${medicines.length} of ${total} products`}
+          </p>
         </div>
         
         <div className="flex items-center gap-4">

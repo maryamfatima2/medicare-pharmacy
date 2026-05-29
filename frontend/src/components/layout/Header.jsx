@@ -34,9 +34,9 @@ const Header = () => {
             onMouseEnter={() => setIsDropdownOpen(true)}
             onMouseLeave={() => setIsDropdownOpen(false)}
           >
-            <button className="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-300 font-medium transition-colors">
+            <Link to="/categories" className="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-300 font-medium transition-colors">
               Categories <ChevronDown className="w-4 h-4" />
-            </button>
+            </Link>
             
             {/* Dropdown Menu */}
             {isDropdownOpen && (
