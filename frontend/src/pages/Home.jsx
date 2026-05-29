@@ -110,7 +110,7 @@ const Home = () => {
       </section>
 
       {/* Dynamic Category Sections with Products */}
-      {dynamicCategories.map((category) => (
+      {dynamicCategories.slice(0, 4).map((category) => (
         <CategoryCards key={category._id} category={category} />
       ))}
 
