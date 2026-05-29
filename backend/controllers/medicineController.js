@@ -1,4 +1,5 @@
 import Medicine from '../models/Medicine.js';
+import Category from '../models/Category.js';
 
 // @desc    Get all medicines with search, filter, pagination
 // @route   GET /api/medicines
@@ -17,9 +18,19 @@ export const getMedicines = async (req, res) => {
       query.name = { $regex: req.query.search, $options: 'i' };
     }
 
-    // Filter by category
+    // Filter by category: allow either category ID or category name
     if (req.query.category) {
-      query.category = req.query.category;
+      const categoryValue = req.query.category.toString().trim();
+      if (categoryValue.match(/^[0-9a-fA-F]{24}$/)) {
+        query.category = categoryValue;
+      } else {
+        const categoryDoc = await Category.findOne({ name: categoryValue });
+        if (categoryDoc) {
+          query.category = categoryDoc._id;
+        } else {
+          query.category = categoryValue;
+        }
+      }
     }
 
     // Filter by dosage form

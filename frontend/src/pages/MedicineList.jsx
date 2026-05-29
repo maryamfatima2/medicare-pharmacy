@@ -16,9 +16,9 @@ const MedicineList = () => {
   const [showFilters, setShowFilters] = useState(false);
 
   // Filters state from URL
-  const page = searchParams.get('page') || 1;
-  const category = searchParams.get('category') || '';
-  const search = searchParams.get('search') || '';
+  const page = Number(searchParams.get('page') || 1);
+  const category = searchParams.get('category')?.trim() || '';
+  const search = searchParams.get('search')?.trim() || '';
   const sort = searchParams.get('sort') || 'newest';
 
   useEffect(() => {
@@ -40,9 +40,13 @@ const MedicineList = () => {
         if (search) params.search = search;
         if (sort) params.sort = sort;
         const { data } = await API.get('/medicines', { params });
-        setMedicines(data.medicines);
-        setPages(data.pages);
-        setTotal(data.total);
+        const medicinesResponse = Array.isArray(data)
+          ? data
+          : data.medicines || data.products || [];
+
+        setMedicines(medicinesResponse);
+        setPages(Number.isInteger(data.pages) ? data.pages : Math.max(1, Math.ceil(medicinesResponse.length / limit)));
+        setTotal(Number.isInteger(data.total) ? data.total : medicinesResponse.length);
       } catch (err) {
         console.error(err);
       } finally {

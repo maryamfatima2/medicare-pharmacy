@@ -27,7 +27,7 @@ const CategoryCards = ({ category }) => {
             </p>
           </div>
           <Link 
-            to={`/medicines?category=${category.name}`} 
+            to={`/medicines?category=${category._id || category.name}`} 
             className="group flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold text-sm hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
           >
             View All <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
