@@ -120,9 +120,12 @@ const seedData = async () => {
     ];
 
     await Medicine.insertMany(
-      medicines.map((m) => ({ ...m, image: img(m.name) }))
+      medicines.map((m) => ({
+        ...m,
+        image: img(m.name),
+        isActive: true,
+      }))
     );
-
     console.log('✅ Healora seed data inserted successfully!');
     console.log('👤 Admin: admin@healora.com / admin123');
     console.log('👤 User: john@healora.com / user123');
