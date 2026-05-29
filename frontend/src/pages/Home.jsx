@@ -36,34 +36,41 @@ const Home = () => {
   const [bestsellers, setBestsellers] = useState([]);
   const [categories, setCategories] = useState([]);
   const [dynamicCategories, setDynamicCategories] = useState([]);
-  const [loadingFeatured, setLoadingFeatured] = useState(true);
-  const [loadingBest, setLoadingBest] = useState(true);
+  const [loadingHome, setLoadingHome] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [featRes, bestRes, catRes, medRes] = await Promise.all([
-          API.get('/medicines/featured/list'),
-          API.get('/medicines/bestsellers/list'),
+        const [catRes, medRes] = await Promise.all([
           API.get('/categories'),
-          API.get('/medicines', { params: { limit: 100 } }),
+          API.get('/medicines', { params: { page: 1, limit: 100 } }),
         ]);
-        setFeatured(featRes.data);
-        setBestsellers(bestRes.data);
-        setCategories(catRes.data);
 
-        const allMeds = medRes.data.medicines || [];
-        const catsWithMeds = catRes.data.map(cat => ({
-          ...cat,
-          products: allMeds.filter(m => m.category?._id === cat._id)
-        })).filter(cat => cat.products.length > 0);
+        const allMeds = Array.isArray(medRes.data)
+          ? medRes.data
+          : medRes.data.medicines || [];
+
+        const featuredProducts = allMeds.filter((m) => m.isFeatured && m.isActive);
+        const bestsellerProducts = allMeds.filter((m) => m.isBestSeller && m.isActive);
+
+        const sortedBySales = [...allMeds].sort((a, b) => (b.soldCount || 0) - (a.soldCount || 0));
+
+        setFeatured(featuredProducts.length ? featuredProducts.slice(0, 4) : sortedBySales.slice(0, 4));
+        setBestsellers(bestsellerProducts.length ? bestsellerProducts.slice(0, 8) : sortedBySales.slice(0, 8));
+        setCategories(catRes.data || []);
+
+        const catsWithMeds = (catRes.data || [])
+          .map((cat) => ({
+            ...cat,
+            products: allMeds.filter((m) => m.category?._id === cat._id || m.category === cat._id || m.category?.name === cat.name),
+          }))
+          .filter((cat) => cat.products && cat.products.length > 0);
 
         setDynamicCategories(catsWithMeds);
       } catch (error) {
         console.error('Error fetching home data', error);
       } finally {
-        setLoadingFeatured(false);
-        setLoadingBest(false);
+        setLoadingHome(false);
       }
     };
     fetchData();
@@ -77,20 +84,28 @@ const Home = () => {
       <section className="section-dark bg-slate-100/50 dark:bg-navy-900/30 border-y border-slate-200 dark:border-white/5">
         <div className="container mx-auto px-4">
           <SectionHeader title="Featured Products" subtitle="Hand-picked healthcare essentials" linkTo="/medicines" />
-          {loadingFeatured ? <ProductSkeleton count={4} /> : (
+          {loadingHome ? (
+            <ProductSkeleton count={4} />
+          ) : featured.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {featured.slice(0, 4).map((m) => <MedicineCard key={m._id} medicine={m} />)}
             </div>
+          ) : (
+            <div className="py-12 text-center text-slate-600 dark:text-slate-300">No featured products available right now.</div>
           )}
         </div>
       </section>
 
       <section className="section-dark container mx-auto px-4">
         <SectionHeader title="Top Selling Products" subtitle="Get necessities at up to 10% discount" linkTo="/medicines" linkLabel="Shop All" />
-        {loadingBest ? <ProductSkeleton count={4} /> : (
+        {loadingHome ? (
+          <ProductSkeleton count={4} />
+        ) : bestsellers.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {bestsellers.slice(0, 8).map((m) => <MedicineCard key={m._id} medicine={m} />)}
           </div>
+        ) : (
+          <div className="py-12 text-center text-slate-600 dark:text-slate-300">No best selling products available right now.</div>
         )}
       </section>
 
