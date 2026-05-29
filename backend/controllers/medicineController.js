@@ -1,4 +1,3 @@
-```js
 import Medicine from '../models/Medicine.js';
 import Category from '../models/Category.js';
 
@@ -205,4 +204,4 @@ export const deleteMedicine = async (req, res) => {
     });
   }
 };
-```
+

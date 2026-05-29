@@ -7,7 +7,7 @@ import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 
 // Route imports
 import authRoutes from './routes/authRoutes.js';
-import medicineRoutes from './routes/medicineRoutes.js';
+import * as medicineRoutes from './routes/medicineRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import cartRoutes from './routes/cartRoutes.js';
@@ -37,7 +37,7 @@ app.use('/uploads', express.static('uploads'));
 
 // API Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/medicines', medicineRoutes);
+app.use('/api/medicines', medicineRoutes.default || medicineRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/cart', cartRoutes);

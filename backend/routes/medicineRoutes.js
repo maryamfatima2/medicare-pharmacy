@@ -1,4 +1,3 @@
-```js
 import express from 'express';
 
 import {
@@ -28,4 +27,4 @@ router
   .delete(protect, admin, deleteMedicine);
 
 export default router;
-```
+
