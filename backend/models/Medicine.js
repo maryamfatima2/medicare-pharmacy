@@ -58,7 +58,7 @@ const medicineSchema = new mongoose.Schema(
     },
     dosageForm: {
       type: String,
-      enum: ['Tablet', 'Capsule', 'Syrup', 'Injection', 'Cream', 'Drops', 'Inhaler', 'Powder', 'Gel', 'Ointment', 'Other'],
+      enum: ['Tablet', 'Capsule', 'Syrup', 'Injection', 'Cream', 'Drops', 'Inhaler', 'Powder', 'Gel', 'Ointment', 'Liquid', 'Other'],
       default: 'Tablet',
     },
     strength: {

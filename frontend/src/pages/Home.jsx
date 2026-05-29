@@ -15,7 +15,6 @@ import NewsletterSection from '../components/home/NewsletterSection';
 import SectionHeader from '../components/common/SectionHeader';
 import ProductSkeleton from '../components/common/ProductSkeleton';
 import ScrollReveal from '../components/common/ScrollReveal';
-import { CATEGORY_MOCK_DATA } from '../constants/categoryData';
 import { BRAND } from '../constants/brand';
 import { getMedicineImage } from '../constants/medicineImages';
 
@@ -36,20 +35,30 @@ const Home = () => {
   const [featured, setFeatured] = useState([]);
   const [bestsellers, setBestsellers] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [dynamicCategories, setDynamicCategories] = useState([]);
   const [loadingFeatured, setLoadingFeatured] = useState(true);
   const [loadingBest, setLoadingBest] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [featRes, bestRes, catRes] = await Promise.all([
+        const [featRes, bestRes, catRes, medRes] = await Promise.all([
           API.get('/medicines/featured/list'),
           API.get('/medicines/bestsellers/list'),
           API.get('/categories'),
+          API.get('/medicines', { params: { limit: 100 } }),
         ]);
         setFeatured(featRes.data);
         setBestsellers(bestRes.data);
         setCategories(catRes.data);
+
+        const allMeds = medRes.data.medicines || [];
+        const catsWithMeds = catRes.data.map(cat => ({
+          ...cat,
+          products: allMeds.filter(m => m.category?._id === cat._id)
+        })).filter(cat => cat.products.length > 0);
+
+        setDynamicCategories(catsWithMeds);
       } catch (error) {
         console.error('Error fetching home data', error);
       } finally {
@@ -86,7 +95,7 @@ const Home = () => {
       </section>
 
       {/* Dynamic Category Sections with Products */}
-      {CATEGORY_MOCK_DATA.map((category) => (
+      {dynamicCategories.map((category) => (
         <CategoryCards key={category._id} category={category} />
       ))}
 

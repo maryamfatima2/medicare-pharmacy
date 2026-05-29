@@ -140,27 +140,27 @@ const MedicineList = () => {
 
             {/* Sort */}
             <div className="mb-8">
-              <label className="block text-sm font-bold text-gray-700 mb-3 uppercase tracking-wider">Sort By</label>
+              <label className="block text-sm font-bold text-slate-400 mb-3 uppercase tracking-wider">Sort By</label>
               <select 
-                className="w-full bg-gray-50 border-none rounded-lg py-3 px-4 focus:ring-2 focus:ring-primary-500 outline-none"
+                className="w-full bg-navy-950/60 border border-white/10 rounded-xl py-3 px-4 focus:ring-2 focus:ring-primary-500 outline-none text-slate-100"
                 value={sort}
                 onChange={(e) => handleFilterChange('sort', e.target.value)}
               >
-                <option value="newest">Newest Arrivals</option>
-                <option value="bestselling">Best Sellers</option>
-                <option value="price_asc">Price: Low to High</option>
-                <option value="price_desc">Price: High to Low</option>
-                <option value="rating">Top Rated</option>
+                <option value="newest" className="bg-navy-900 text-slate-100">Newest Arrivals</option>
+                <option value="bestselling" className="bg-navy-900 text-slate-100">Best Sellers</option>
+                <option value="price_asc" className="bg-navy-900 text-slate-100">Price: Low to High</option>
+                <option value="price_desc" className="bg-navy-900 text-slate-100">Price: High to Low</option>
+                <option value="rating" className="bg-navy-900 text-slate-100">Top Rated</option>
               </select>
             </div>
 
             {/* Categories */}
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-3 uppercase tracking-wider">Categories</label>
+              <label className="block text-sm font-bold text-slate-400 mb-3 uppercase tracking-wider">Categories</label>
               <div className="space-y-2">
                 <button 
                   onClick={() => handleFilterChange('category', '')}
-                  className={`w-full text-left px-4 py-2 rounded-lg transition-colors flex items-center justify-between ${!category ? 'bg-primary-50 text-primary-700 font-bold' : 'hover:bg-gray-50 text-gray-600'}`}
+                  className={`w-full text-left px-4 py-2 rounded-lg transition-colors flex items-center justify-between ${!category ? 'bg-gradient-to-r from-primary-600/20 to-accent-600/20 border border-primary-500/30 text-primary-400 font-bold' : 'hover:bg-navy-800 text-slate-400 hover:text-white'}`}
                 >
                   All Products
                 </button>
@@ -168,7 +168,7 @@ const MedicineList = () => {
                   <button 
                     key={cat._id}
                     onClick={() => handleFilterChange('category', cat._id)}
-                    className={`w-full text-left px-4 py-2 rounded-lg transition-colors flex items-center justify-between ${category === cat._id ? 'bg-primary-50 text-primary-700 font-bold' : 'hover:bg-gray-50 text-gray-600'}`}
+                    className={`w-full text-left px-4 py-2 rounded-lg transition-colors flex items-center justify-between ${category === cat._id ? 'bg-gradient-to-r from-primary-600/20 to-accent-600/20 border border-primary-500/30 text-primary-400 font-bold' : 'hover:bg-navy-800 text-slate-400 hover:text-white'}`}
                   >
                     <span className="flex items-center gap-2">
                       <span>{cat.icon}</span> {cat.name}
@@ -205,7 +205,7 @@ const MedicineList = () => {
                   <button 
                     disabled={parseInt(page) === 1}
                     onClick={() => handleFilterChange('page', parseInt(page) - 1)}
-                    className="p-3 rounded-xl border border-gray-200 hover:border-primary-500 disabled:opacity-30 transition-all"
+                    className="p-3 rounded-xl border border-white/10 bg-navy-800 text-slate-300 hover:border-primary-500 disabled:opacity-30 disabled:hover:border-white/10 transition-all"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
@@ -214,7 +214,7 @@ const MedicineList = () => {
                       <button 
                         key={x + 1}
                         onClick={() => handleFilterChange('page', x + 1)}
-                        className={`w-12 h-12 rounded-xl font-bold transition-all ${parseInt(page) === x + 1 ? 'bg-primary-600 text-white shadow-lg shadow-primary-200' : 'bg-white border border-gray-200 text-gray-600 hover:border-primary-500'}`}
+                        className={`w-12 h-12 rounded-xl font-bold transition-all ${parseInt(page) === x + 1 ? 'bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-glow' : 'bg-navy-800 border border-white/10 text-slate-300 hover:border-primary-500'}`}
                       >
                         {x + 1}
                       </button>
@@ -223,7 +223,7 @@ const MedicineList = () => {
                   <button 
                     disabled={parseInt(page) === pages}
                     onClick={() => handleFilterChange('page', parseInt(page) + 1)}
-                    className="p-3 rounded-xl border border-gray-200 hover:border-primary-500 disabled:opacity-30 transition-all"
+                    className="p-3 rounded-xl border border-white/10 bg-navy-800 text-slate-300 hover:border-primary-500 disabled:opacity-30 disabled:hover:border-white/10 transition-all"
                   >
                     <ChevronRight className="w-5 h-5" />
                   </button>
@@ -231,19 +231,19 @@ const MedicineList = () => {
               )}
             </>
           ) : (
-            <div className="bg-white rounded-3xl p-20 text-center border border-dashed border-gray-200">
-              <div className="bg-gray-50 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
-                <PackageX className="w-12 h-12 text-gray-300" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">No Medicines Found</h3>
-              <p className="text-gray-500 mb-8 max-w-sm mx-auto">We couldn't find any products matching your search criteria. Try a different term or clear filters.</p>
-              <button 
-                onClick={() => setSearchParams({})}
-                className="btn-primary"
-              >
-                Clear All Filters
-              </button>
-            </div>
+             <div className="card-dark rounded-3xl p-20 text-center border border-dashed border-white/10 bg-navy-900/40">
+               <div className="bg-navy-950 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                 <PackageX className="w-12 h-12 text-slate-600" />
+               </div>
+               <h3 className="text-2xl font-bold text-white mb-2">No Medicines Found</h3>
+               <p className="text-slate-400 mb-8 max-w-sm mx-auto">We couldn't find any products matching your search criteria. Try a different term or clear filters.</p>
+               <button 
+                 onClick={() => setSearchParams({})}
+                 className="btn-primary"
+               >
+                 Clear All Filters
+               </button>
+             </div>
           )}
         </div>
       </div>

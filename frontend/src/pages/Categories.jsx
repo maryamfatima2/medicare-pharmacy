@@ -36,9 +36,9 @@ const Categories = () => {
       ) : categories.length > 0 ? (
         <CategoriesGrid categories={categories} />
       ) : (
-        <div className="bg-white rounded-3xl p-16 text-center border border-dashed border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">No categories available</h2>
-          <p className="text-gray-500">Try again later or add categories from the admin dashboard.</p>
+        <div className="card-dark rounded-3xl p-16 text-center border border-dashed border-white/10 bg-navy-900/40">
+          <h2 className="text-2xl font-bold text-white mb-4">No categories available</h2>
+          <p className="text-slate-400">Try again later or add categories from the admin dashboard.</p>
         </div>
       )}
     </div>

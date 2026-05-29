@@ -133,7 +133,7 @@ export const toggleWishlist = async (req, res) => {
     const user = await User.findById(req.user._id);
     const medicineId = req.params.medicineId;
 
-    const index = user.wishlist.indexOf(medicineId);
+    const index = user.wishlist.findIndex((id) => id.toString() === medicineId);
     if (index > -1) {
       user.wishlist.splice(index, 1);
     } else {

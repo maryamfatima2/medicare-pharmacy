@@ -11,21 +11,21 @@ const Wishlist = () => {
     <div className="container mx-auto px-4 py-12">
       <div className="flex items-center justify-between mb-10">
         <div>
-          <h1 className="text-3xl font-black text-gray-900">My Wishlist</h1>
-          <p className="text-gray-500">Items you've saved for later.</p>
+          <h1 className="text-3xl font-black text-white">My Wishlist</h1>
+          <p className="text-slate-400">Items you've saved for later.</p>
         </div>
-        <div className="bg-red-50 text-red-600 px-4 py-2 rounded-xl font-bold flex items-center gap-2">
+        <div className="bg-rose-500/10 text-rose-500 border border-rose-500/20 px-4 py-2 rounded-xl font-bold flex items-center gap-2">
           <Heart className="w-5 h-5 fill-current" /> {wishlist.length} Items
         </div>
       </div>
 
       {wishlist.length === 0 ? (
-        <div className="card text-center py-20 bg-gray-50 border-dashed border-2">
-          <div className="bg-white w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
-            <Heart className="w-12 h-12 text-gray-200" />
+        <div className="card-dark text-center py-20 bg-navy-900/40 border-dashed border-2 border-white/10">
+          <div className="bg-navy-950 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-white/5">
+            <Heart className="w-12 h-12 text-slate-700" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Your Wishlist is Empty</h2>
-          <p className="text-gray-500 mb-8 max-w-xs mx-auto">Found something you like? Tap the heart icon to save it here!</p>
+          <h2 className="text-2xl font-bold text-white mb-4">Your Wishlist is Empty</h2>
+          <p className="text-slate-400 mb-8 max-w-xs mx-auto">Found something you like? Tap the heart icon to save it here!</p>
           <Link to="/medicines" className="btn-primary inline-flex items-center gap-2 px-8 py-3">
             Discover Products <ArrowRight className="w-5 h-5" />
           </Link>

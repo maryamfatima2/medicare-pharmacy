@@ -37,7 +37,8 @@ const CategoryCards = ({ category }) => {
         {/* Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
           {category.products.slice(0, 12).map((product, index) => {
-            const mappedProduct = {
+            const isReal = product.averageRating !== undefined || product.stock !== undefined;
+            const mappedProduct = isReal ? product : {
               ...product,
               averageRating: product.rating,
               stock: product.inStock ? 50 : 0,

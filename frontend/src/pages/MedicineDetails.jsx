@@ -116,38 +116,38 @@ const MedicineDetails = () => {
               </div>
             </div>
 
-            <div className="bg-gray-50 p-6 rounded-2xl flex items-center justify-between">
+            <div className="bg-navy-900/50 border border-white/5 p-6 rounded-2xl flex items-center justify-between">
               <div>
-                <p className="text-gray-500 text-sm mb-1">Our Price</p>
+                <p className="text-slate-400 text-sm mb-1">Our Price</p>
                 <div className="flex items-baseline gap-3">
-                  <span className="text-4xl font-black text-primary-600">
+                  <span className="text-4xl font-black text-primary-400">
                     Rs. {medicine.discountPrice > 0 ? medicine.discountPrice : medicine.price}
                   </span>
                   {medicine.discountPrice > 0 && (
-                    <span className="text-xl text-gray-400 line-through">Rs. {medicine.price}</span>
+                    <span className="text-xl text-slate-500 line-through">Rs. {medicine.price}</span>
                   )}
                 </div>
               </div>
               <div className="text-right">
-                <p className={`font-bold flex items-center gap-2 justify-end ${medicine.stock > 0 ? 'text-green-600' : 'text-red-500'}`}>
+                <p className={`font-bold flex items-center gap-2 justify-end ${medicine.stock > 0 ? 'text-accent-400' : 'text-rose-500'}`}>
                   {medicine.stock > 0 ? <><ShieldCheck className="w-5 h-5" /> In Stock</> : <><Package className="w-5 h-5" /> Out of Stock</>}
                 </p>
-                <p className="text-gray-400 text-sm">{medicine.stock} units left</p>
+                <p className="text-slate-400 text-sm">{medicine.stock} units left</p>
               </div>
             </div>
 
             <div className="flex flex-wrap items-center gap-6">
-              <div className="flex items-center border border-gray-200 rounded-xl bg-white p-1">
+              <div className="flex items-center border border-white/10 rounded-xl bg-navy-950 p-1">
                 <button 
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-3 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-3 hover:bg-navy-800 rounded-lg transition-colors text-slate-300"
                 >
                   <Minus className="w-5 h-5" />
                 </button>
-                <span className="w-12 text-center font-bold text-xl">{quantity}</span>
+                <span className="w-12 text-center font-bold text-xl text-white">{quantity}</span>
                 <button 
                   onClick={() => setQuantity(quantity + 1)}
-                  className="p-3 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-3 hover:bg-navy-800 rounded-lg transition-colors text-slate-300"
                 >
                   <Plus className="w-5 h-5" />
                 </button>
@@ -163,45 +163,45 @@ const MedicineDetails = () => {
               
               <button 
                 onClick={() => toggleWishlist(medicine._id)}
-                className={`p-4 rounded-xl border transition-all ${isInWishlist(medicine._id) ? 'bg-red-50 border-red-200 text-red-500 shadow-md' : 'border-gray-200 text-gray-400 hover:text-red-500'}`}
+                className={`p-4 rounded-xl border transition-all ${isInWishlist(medicine._id) ? 'bg-rose-500/10 border-rose-500/30 text-rose-500 shadow-md' : 'border-white/10 text-slate-400 hover:text-rose-500'}`}
               >
                 <Heart className={`w-6 h-6 ${isInWishlist(medicine._id) ? 'fill-current' : ''}`} />
               </button>
             </div>
 
             {/* Product Meta */}
-            <div className="grid grid-cols-2 gap-6 pt-6 border-t border-gray-100">
+            <div className="grid grid-cols-2 gap-6 pt-6 border-t border-white/10">
               <div>
-                <p className="text-gray-400 text-sm font-bold uppercase tracking-wider mb-2">Manufacturer</p>
-                <p className="text-gray-800 font-semibold">{medicine.manufacturer || 'General Pharma'}</p>
+                <p className="text-slate-400 text-sm font-bold uppercase tracking-wider mb-2">Manufacturer</p>
+                <p className="text-white font-semibold">{medicine.manufacturer || 'General Pharma'}</p>
               </div>
               <div>
-                <p className="text-gray-400 text-sm font-bold uppercase tracking-wider mb-2">Form</p>
-                <p className="text-gray-800 font-semibold">{medicine.dosageForm}</p>
+                <p className="text-slate-400 text-sm font-bold uppercase tracking-wider mb-2">Form</p>
+                <p className="text-white font-semibold">{medicine.dosageForm}</p>
               </div>
               <div>
-                <p className="text-gray-400 text-sm font-bold uppercase tracking-wider mb-2">Strength</p>
-                <p className="text-gray-800 font-semibold">{medicine.strength || 'N/A'}</p>
+                <p className="text-slate-400 text-sm font-bold uppercase tracking-wider mb-2">Strength</p>
+                <p className="text-white font-semibold">{medicine.strength || 'N/A'}</p>
               </div>
               <div>
-                <p className="text-gray-400 text-sm font-bold uppercase tracking-wider mb-2">Pack Size</p>
-                <p className="text-gray-800 font-semibold">{medicine.packSize || 'Standard'}</p>
+                <p className="text-slate-400 text-sm font-bold uppercase tracking-wider mb-2">Pack Size</p>
+                <p className="text-white font-semibold">{medicine.packSize || 'Standard'}</p>
               </div>
             </div>
 
             <div className="flex gap-4">
-              <div className="flex-1 flex items-center gap-3 p-4 bg-primary-50 rounded-2xl border border-primary-100">
-                <Truck className="w-6 h-6 text-primary-600" />
+              <div className="flex-1 flex items-center gap-3 p-4 bg-primary-500/5 rounded-2xl border border-primary-500/20">
+                <Truck className="w-6 h-6 text-primary-400" />
                 <div>
-                  <p className="text-gray-900 font-bold text-sm">Free Delivery</p>
-                  <p className="text-gray-500 text-xs">On orders over Rs. 2000</p>
+                  <p className="text-white font-bold text-sm">Free Delivery</p>
+                  <p className="text-slate-400 text-xs">On orders over Rs. 2000</p>
                 </div>
               </div>
-              <div className="flex-1 flex items-center gap-3 p-4 bg-secondary-50 rounded-2xl border border-secondary-100">
-                <RotateCcw className="w-6 h-6 text-secondary-600" />
+              <div className="flex-1 flex items-center gap-3 p-4 bg-accent-500/5 rounded-2xl border border-accent-500/20">
+                <RotateCcw className="w-6 h-6 text-accent-400" />
                 <div>
-                  <p className="text-gray-900 font-bold text-sm">7 Day Returns</p>
-                  <p className="text-gray-500 text-xs">Original packing required</p>
+                  <p className="text-white font-bold text-sm">7 Day Returns</p>
+                  <p className="text-slate-400 text-xs">Original packing required</p>
                 </div>
               </div>
             </div>
@@ -211,46 +211,46 @@ const MedicineDetails = () => {
 
       {/* Tabs / Description */}
       <div className="mb-20">
-        <div className="flex border-b border-gray-200 mb-8">
-          <button className="border-b-4 border-primary-600 px-8 py-4 font-bold text-gray-900">Description & Usage</button>
-          <button className="px-8 py-4 font-bold text-gray-400 hover:text-gray-600">Side Effects</button>
-          <button className="px-8 py-4 font-bold text-gray-400 hover:text-gray-600">Reviews ({medicine.numReviews || 0})</button>
+        <div className="flex border-b border-white/10 mb-8">
+          <button className="border-b-4 border-primary-500 px-8 py-4 font-bold text-white">Description & Usage</button>
+          <button className="px-8 py-4 font-bold text-slate-400 hover:text-white transition-colors">Side Effects</button>
+          <button className="px-8 py-4 font-bold text-slate-400 hover:text-white transition-colors">Reviews ({medicine.numReviews || 0})</button>
         </div>
         
         <div className="grid lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                <Info className="w-6 h-6 text-primary-600" /> Product Overview
+              <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <Info className="w-6 h-6 text-primary-400" /> Product Overview
               </h3>
-              <p className="text-gray-600 leading-relaxed text-lg">
+              <p className="text-slate-300 leading-relaxed text-lg">
                 {medicine.description}
               </p>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                <ClipboardList className="w-6 h-6 text-primary-600" /> Usage Instructions
+              <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <ClipboardList className="w-6 h-6 text-primary-400" /> Usage Instructions
               </h3>
-              <p className="text-gray-600 leading-relaxed bg-gray-50 p-6 rounded-2xl border-l-4 border-primary-600">
+              <p className="text-slate-300 leading-relaxed bg-navy-900/50 p-6 rounded-2xl border-l-4 border-primary-500 border border-white/5">
                 {medicine.usageInstructions || "Consult your physician for personalized dosage instructions. Generally taken with water before or after meals as prescribed."}
               </p>
             </div>
           </div>
           
-          <aside className="bg-white p-8 rounded-3xl border border-gray-100 h-fit space-y-6">
-            <h3 className="text-xl font-bold text-gray-800">Safety Information</h3>
+          <aside className="card-dark p-8 rounded-3xl space-y-6">
+            <h3 className="text-xl font-bold text-white">Safety Information</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <div className="bg-red-100 p-1 rounded-full mt-1"><Info className="w-4 h-4 text-red-600" /></div>
-                <p className="text-sm text-gray-600">Keep out of reach of children.</p>
+                <div className="bg-red-500/10 p-1 rounded-full mt-1"><Info className="w-4 h-4 text-red-500" /></div>
+                <p className="text-sm text-slate-300">Keep out of reach of children.</p>
               </li>
               <li className="flex items-start gap-3">
-                <div className="bg-amber-100 p-1 rounded-full mt-1"><Info className="w-4 h-4 text-amber-600" /></div>
-                <p className="text-sm text-gray-600">Store in a cool, dry place away from sunlight.</p>
+                <div className="bg-amber-500/10 p-1 rounded-full mt-1"><Info className="w-4 h-4 text-amber-500" /></div>
+                <p className="text-sm text-slate-300">Store in a cool, dry place away from sunlight.</p>
               </li>
               <li className="flex items-start gap-3">
-                <div className="bg-blue-100 p-1 rounded-full mt-1"><Info className="w-4 h-4 text-blue-600" /></div>
-                <p className="text-sm text-gray-600">Do not exceed the recommended dose.</p>
+                <div className="bg-blue-500/10 p-1 rounded-full mt-1"><Info className="w-4 h-4 text-blue-500" /></div>
+                <p className="text-sm text-slate-300">Do not exceed the recommended dose.</p>
               </li>
             </ul>
           </aside>
@@ -258,21 +258,21 @@ const MedicineDetails = () => {
       </div>
       {/* Related Products */}
       {related.length > 0 && (
-        <section className="pt-12 border-t border-gray-100">
+        <section className="pt-12 border-t border-white/10">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-black text-gray-900">Related Products</h2>
-            <Link to="/medicines" className="text-primary-600 font-bold hover:underline">View All</Link>
+            <h2 className="text-3xl font-black text-white">Related Products</h2>
+            <Link to="/medicines" className="text-primary-400 font-bold hover:text-primary-300 transition-colors">View All</Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {related.map(item => (
               <Link key={item._id} to={`/medicine/${item._id}`} className="group">
-                <div className="bg-white rounded-3xl p-6 border border-gray-100 hover:shadow-2xl hover:shadow-primary-100/50 transition-all">
-                  <div className="aspect-square bg-gray-50 rounded-2xl p-4 mb-4 overflow-hidden">
+                <div className="card-dark bg-navy-900/50 p-6 hover:shadow-glow transition-all duration-300">
+                  <div className="aspect-square bg-navy-950/60 rounded-2xl p-4 mb-4 overflow-hidden">
                     <img src={item.image} alt={item.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" />
                   </div>
-                  <h4 className="font-bold text-gray-900 mb-1 line-clamp-1">{item.name}</h4>
-                  <p className="text-xs text-gray-400 mb-2">{item.genericName}</p>
-                  <p className="text-primary-600 font-black">Rs. {item.discountPrice || item.price}</p>
+                  <h4 className="font-bold text-white mb-1 line-clamp-1 group-hover:text-primary-400 transition-colors">{item.name}</h4>
+                  <p className="text-xs text-slate-400 mb-2">{item.genericName}</p>
+                  <p className="text-primary-400 font-black">Rs. {item.discountPrice || item.price}</p>
                 </div>
               </Link>
             ))}
@@ -285,17 +285,17 @@ const MedicineDetails = () => {
         const history = JSON.parse(localStorage.getItem('recentlyViewed') || '[]').filter(item => item._id !== id).slice(0, 4);
         if (history.length === 0) return null;
         return (
-          <section className="pt-12 mt-12 border-t border-gray-100">
-            <h2 className="text-3xl font-black text-gray-900 mb-8">Recently Viewed</h2>
+          <section className="pt-12 mt-12 border-t border-white/10">
+            <h2 className="text-3xl font-black text-white mb-8">Recently Viewed</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
               {history.map(item => (
                 <Link key={item._id} to={`/medicine/${item._id}`} className="group">
-                  <div className="bg-white rounded-3xl p-6 border border-gray-100 hover:shadow-2xl hover:shadow-secondary-100/50 transition-all">
-                    <div className="aspect-square bg-gray-50 rounded-2xl p-4 mb-4 overflow-hidden">
+                  <div className="card-dark bg-navy-900/50 p-6 hover:shadow-glow transition-all duration-300">
+                    <div className="aspect-square bg-navy-950/60 rounded-2xl p-4 mb-4 overflow-hidden">
                       <img src={item.image} alt={item.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" />
                     </div>
-                    <h4 className="font-bold text-gray-900 mb-1 line-clamp-1">{item.name}</h4>
-                    <p className="text-secondary-600 font-black">Rs. {item.price}</p>
+                    <h4 className="font-bold text-white mb-1 line-clamp-1 group-hover:text-primary-400 transition-colors">{item.name}</h4>
+                    <p className="text-accent-400 font-black">Rs. {item.price}</p>
                   </div>
                 </Link>
               ))}
